@@ -1,0 +1,17 @@
+services:
+  app:
+    build: .
+    image: bitrix-bridge
+    container_name: bitrix-bridge
+    restart: unless-stopped
+    env_file: python/.env
+    ports:
+      - "8000:8000"
+    volumes:
+      - data:/app/data
+      # Лог в Google Sheets: положить ключ сервисного аккаунта в python/google-credentials.json
+      # и прописать в python/.env GOOGLE_CREDENTIALS_FILE=/app/google-credentials.json
+      # - ./python/google-credentials.json:/app/google-credentials.json:ro
+
+volumes:
+  data:
