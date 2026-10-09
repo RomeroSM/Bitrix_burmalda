@@ -21,7 +21,7 @@ def health():
     return jsonify(status="ok")
 
 
-@app.post("/")
+@app.route("/", methods=["GET", "POST"])
 def webhook():
     params = request.values
     log.info("payload: %s", params.to_dict(flat=False))
